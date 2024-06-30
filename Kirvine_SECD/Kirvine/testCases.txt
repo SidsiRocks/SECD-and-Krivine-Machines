@@ -1,0 +1,99 @@
+(*Simple arithmetic test*)
+    ((1+2)*(10-5))/4
+
+(*Simple let expression test*)
+let x = 1+2 in 
+    let y = x - 10 in 
+        x*y + 12
+
+(*test of code which would not terminate in call by value*)
+(fun x -> fun y -> x) 12 (let f = fun g -> (g g) in (f f) )
+
+(*Simple boolean identity test*)
+true 
+
+(*or function test*)
+true || false
+
+(*boolean function test of larger depth*)
+   false || (true && (not (false || false)))
+
+(*equal test to check if function working properly*)
+let n = 1 in (n = 2)
+
+(*recursive program test*)
+let fib = fun n -> fun f -> 
+            if (n=0) || (n=1) then 
+                n 
+            else 
+                (f (n-1) f) + (f (n-2) f) 
+in 
+    fib 11
+
+
+(*case statement*)
+let n = 15 in 
+    switch(n)
+        case 0:
+            n*0
+        case 1:
+            n*1
+        case 2:
+            n*2
+        case 3:
+            n*3
+        defualt:
+            0
+(*simple test with tuples*)
+let x = (12+30,3*2) in 
+    (First x)/(Second x)
+
+(*test with tuple of size 3*)
+(fun tpl ->
+    let x = First tpl in 
+    let yz = Second tpl in 
+    let y = First yz in 
+    let z = Second yz in 
+        let sqr = fun x -> (x*x) in 
+            (sqr(x)+sqr(y))+sqr(z)  ) [3;4;12]
+        
+(*tests for lazy evaluation of tuples (wouldnt terminate in call by value)*)
+First (4*3, (let f = fun g -> (g g) in (f f) ) )
+
+(*nested case statement in example*)
+let mod4 = ( fun n ->
+                switch(n):
+                    case 0:
+                        switch(n/2):
+                            case 0:
+                                0
+                            case 1:
+                                2
+                            defualt:
+                                n
+                    case 1:
+                        switch(n/2):
+                            case 0:
+                                1
+                            case 1:
+                                3
+                            defualt:
+                                n
+                    defualt:
+                        n) 
+in 
+    mod4 7
+
+(*Test for lazy evaluatuon of if statements*)
+if 12 > 11 then
+    23
+else 
+    let f = fun g -> (g g) in 
+        (f f)
+
+(*printing tuple directly to show that lazy evaluation is taking place*)
+MkPair
+(
+    (let f = fun g -> (g g) in (f f)),
+    (let f = fun g -> (g g) in (f f))
+)

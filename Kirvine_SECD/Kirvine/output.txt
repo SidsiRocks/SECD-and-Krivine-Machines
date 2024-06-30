@@ -1,0 +1,77 @@
+Simple arithmetic test 
+result is:
+3
+Simple let expression test 
+result is:
+-9
+test of code which would not terminate in call by value 
+result is:
+12
+Simple boolean identity test 
+result is:
+true
+Or function test 
+result is:
+true
+Boolean function test but of larger depth 
+result is:
+true
+Equals test to check if working properly 
+result is:
+false
+Recursive program test
+result is:
+89
+Case statement
+result is:
+45
+Simple test with tuples
+result is:
+7
+Test with tuple of size 3
+result is:
+169
+Test for lazy evaluation of tuples (wouldnt terminate in call by value)
+result is:
+12
+Nested case statement example 
+result is:
+3
+Test for lazy evaluation of if statements 
+result is:
+23
+Printing tuple directly to show that lazy evaluation is taking place
+result is:
+Tuple
+   Expr is:
+      App
+         Abs f
+            App
+               f
+
+               f
+
+         Abs g
+            App
+               g
+
+               g
+   Env is:
+      [
+      ]
+   Expr is:
+      App
+         Abs f
+            App
+               f
+
+               f
+
+         Abs g
+            App
+               g
+
+               g
+   Env is:
+      [
+      ]

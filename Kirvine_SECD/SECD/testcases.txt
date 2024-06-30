@@ -1,0 +1,77 @@
+(*Test case 1 arithmetic boolean and if then else statement tested*)
+((3*5)+(7/2 + (12-25)) + exp 2 (8/2+ 6 mod 5) )* if ((5+3) < (6/2)) then 2 else 3
+(*Here exp is the exponentiation function*)
+
+(*Basic nested defintion test*)
+let x = 12 in 
+    let y = 23 in 
+        let x = 3 in 
+            x+y
+
+(*Basic function test*)
+let funct = fun x -> fun y -> x - y in 
+    (funct 12) 23 
+
+(*Recursive function test*)
+(*Caveat:this code actually wouldn't
+     directly work in ocaml*)
+let func = fun n -> fun f -> 
+                if n = 0 or n = 1 then 
+                    n 
+                else
+                    (f (n-1)) + (f (n-2))  in 
+    func 10 func 
+
+(*Recursive function using case statements *)
+let func = fun n -> fun f -> 
+                match n with 
+                | 0 -> 0 
+                | 1 -> 1
+                | _ -> (f (n-1))+(f (n-2))
+(*Another case statement exmaple *)
+let n = 15 in 
+    match n mod 4 with 
+    | 0 -> 0*n 
+    | 1 -> 1*n 
+    | 2 -> 2*n 
+    | 3 -> 3*n 
+
+(*Simple test with tuples *)
+let x = (12+30,3*2) in 
+    (fst x)/(snd x)
+
+(*Test with tuple of size 3 and multiple functions*)
+(fun tpl -> let x = fst tpl in 
+            let yz = snd tpl in 
+            let y = fst yz in 
+            let z = snd yz in 
+                x+y+z) (3,(4,5))
+
+(*Basic sequential defintion test *)
+    let x=3;y=4;z=12 in 
+        x*x+y*y+z*z
+
+(*Multiple function test to check if closure working properly*)
+    let x =3;y=4;z=5 in 
+        let square = fun x -> x*x in 
+        let distFromOrg = fun x -> fun y -> fun z -> 
+                            (square x)+(square y)+(square z) in 
+            distFromOrg x y z
+
+(*Nested case statement example*)
+    let mod4 = fun n ->
+            match n mod 2 with 
+            | 0 -> (
+                        match n/2 mod 2 with 
+                        | 0 -> 0 
+                        | 1 -> 2
+                        | _ -> n
+                   )
+            | 1 -> (
+                        match (n-1)/2 mod 2 with 
+                        | 0 -> 1
+                        | 1 -> 3
+                        | _ -> n
+                   ) in 
+            | _ -> -1
+        (mod4 5,mod4 6,mod4 7,mod4 8)
